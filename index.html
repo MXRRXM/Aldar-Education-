@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aldar Education Immersive Classroom | Manifest XR</title>
+
+  <style>
+    :root{
+      /* Aldar Education Brand Colors */
+      --aldar-primary: #003366;   
+      --aldar-accent: #00AEEF;      
+      --aldar-light: #e6f4fa;    
+      --aldar-grey: #F8F9FA;     
+      --text-dark: #1A1A1A;    
+      --text-light: #595959;   
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(0, 51, 102, 0.08);
+      --radius: 8px;           
+      --max: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--aldar-grey);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    .top-announcement {
+      background: var(--aldar-primary);
+      color: var(--white);
+      text-align: center;
+      padding: 12px 0;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-bottom: 3px solid var(--aldar-accent);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .page{ max-width: var(--max); margin: 0 auto; padding: 20px 20px 80px; }
+
+    .hero-container { 
+      width: 100%;
+      background: linear-gradient(rgba(0, 51, 102, 0.6), rgba(0, 0, 0, 0.7)), url('banner.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      color: white;
+      text-align: center;
+    }
+    .hero-container h0 { font-size: 3.5rem; margin: 0; font-weight: 700; letter-spacing: -1px; line-height: 1.1; max-width: 900px; }
+    .hero-tagline { font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px; font-weight: 600; color: var(--aldar-accent); }
+
+    .banner{ background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 30px; }
+    .banner-inner{ padding: 25px 45px; display: flex; gap: 30px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+    .logo-row{ display: flex; align-items: center; gap: 20px; }
+    .logo-slot{ width: 120px; height: 60px; display: flex; align-items: center; justify-content: center; }
+    .logo-slot img{ width: 100%; height: 100%; object-fit: contain; }
+    .divider { width: 1px; height: 40px; background: #ddd; }
+    .header-text { text-align: right; }
+    .header-text h1 { margin: 0; font-size: 18px; color: var(--aldar-primary); text-transform: uppercase; letter-spacing: 1px; }
+    .header-text p { margin: 0; font-size: 11px; font-weight: 700; color: var(--aldar-accent); text-transform: uppercase; }
+
+    .card{ background: var(--white); border-radius: var(--radius); margin-bottom: 30px; overflow: hidden; box-shadow: var(--shadow); }
+    .card-inner{ padding: 50px; }
+    h2{ font-size: 22px; color: var(--aldar-primary); margin-bottom: 25px; font-weight: 700; position: relative; padding-bottom: 12px; }
+    h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 4px; background: var(--aldar-accent); border-radius: 2px; }
+    h3 { color: var(--aldar-primary); font-size: 18px; margin-top: 30px; margin-bottom: 15px; }
+
+    .quote-box { background: var(--aldar-light); padding: 30px; border-left: 5px solid var(--aldar-accent); margin: 30px 0; font-style: italic; border-radius: 0 var(--radius) var(--radius) 0; }
+    .quote-author { display: block; margin-top: 15px; font-weight: 700; font-style: normal; color: var(--aldar-primary); font-size: 14px; text-transform: uppercase; }
+
+    .roi-box { display: flex; gap: 20px; margin: 30px 0; }
+    .roi-card { flex: 1; background: var(--aldar-primary); padding: 30px; border-radius: var(--radius); text-align: center; color: white; }
+    .roi-stat { font-size: 38px; font-weight: 800; color: var(--aldar-accent); display: block; }
+    .roi-label { font-size: 11px; text-transform: uppercase; font-weight: 700; letter-spacing: 1.5px; margin-top: 8px; opacity: 0.9; }
+
+    .timeline-container { display: flex; gap: 20px; margin-top: 20px; }
+    .timeline-step { flex: 1; background: var(--aldar-grey); padding: 30px; border-radius: var(--radius); text-align: center; border-bottom: 4px solid var(--aldar-primary); }
+    .step-time { font-size: 28px; font-weight: 800; color: var(--aldar-primary); display: block; }
+    .step-label { font-weight: 700; color: var(--text-dark); text-transform: uppercase; font-size: 12px; margin-top: 5px; display: block; }
+
+    .media-item { background: #000; border-radius: var(--radius); overflow: hidden; position: relative; margin: 20px 0; }
+    .media-label { position: absolute; top: 15px; left: 15px; background: var(--aldar-accent); color: white; padding: 6px 16px; font-size: 10px; font-weight: 700; text-transform: uppercase; z-index: 10; letter-spacing: 1px; border-radius: 4px; }
+    
+    .widescreen video, .media-img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+.vertical-video video { 
+  width: 100%; 
+  aspect-ratio: 640 / 1138; 
+  display: block; 
+  object-fit: contain; /* This prevents the cropping/cutting */
+  background: #000;    /* Adds black bars if needed instead of cutting the video */
+}
+    .media-caption { padding: 15px 20px; background: #fff; font-size: 13px; color: var(--text-light); border-top: 1px solid #eee; }
+
+    .table-container { overflow-x: auto; margin-top: 25px; border-radius: var(--radius); border: 1px solid #eee; }
+    .table{ width: 100%; border-collapse: collapse; background: white; }
+    .table th{ background: var(--aldar-primary); text-align: left; padding: 20px; font-size: 11px; color: white; text-transform: uppercase; letter-spacing: 1.5px; }
+    .table td{ padding: 20px; border-bottom: 1px solid #eee; font-size: 14px; }
+    .money{ font-family: 'Courier New', monospace; font-weight: 700; text-align: right; color: var(--aldar-primary); font-size: 16px; }
+    .total-row { background: var(--aldar-light); font-weight: 800; }
+
+    .feature-list { list-style: none; padding: 0; }
+    .feature-list li { padding-left: 30px; position: relative; margin-bottom: 12px; font-size: 15px; }
+    .feature-list li::before { content: '✓'; position: absolute; left: 0; color: var(--aldar-accent); font-weight: 800; }
+
+    .roadmap { display: flex; flex-direction: column; gap: 20px; margin-top: 30px; }
+    .roadmap-item { background: var(--aldar-grey); padding: 25px; border-radius: var(--radius); border-left: 5px solid var(--aldar-primary); }
+    .roadmap-year { font-weight: 800; color: var(--aldar-primary); font-size: 18px; margin-bottom: 5px; display: block; }
+
+    .impact-box { background: var(--aldar-primary); color: white; padding: 40px; border-radius: var(--radius); display: flex; justify-content: space-around; margin-top: 40px; text-align: center; }
+    .impact-item h4 { font-size: 40px; color: var(--aldar-accent); margin: 0; }
+    .impact-item p { margin: 5px 0 0; font-size: 12px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
+
+    .cta-block { background: var(--aldar-primary); color: white; padding: 80px 40px; border-radius: var(--radius); text-align: center; margin-top: 50px; }
+    .btn { display: inline-block; background: var(--aldar-accent); color: white; padding: 20px 50px; border-radius: 50px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 174, 239, 0.3); }
+
+/* Vimeo Responsive Container */
+    .vimeo-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      background: #000;
+      border-radius: var(--radius);
+    }
+    .vimeo-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+
+    @media (max-width: 768px) { .hero-container h0 { font-size: 2.2rem; } .banner-inner { flex-direction: column; text-align: center; } .roi-box, .timeline-container { flex-direction: column; } .impact-box { flex-direction: column; gap: 30px; } }
+  </style>
+</head>
+
+<body>
+  <div class="top-announcement">Official Strategic Proposal | Aldar Education × Future Intelligence</div>
+
+  <main class="page">
+    
+    <div class="hero-container">
+      <div class="hero-tagline">Experience the Future of Learning</div>
+      <h0>The Aldar Education<br>Immersive Classroom</h0>
+      <p style="margin-top: 25px; opacity: 0.9; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; border: 1px solid var(--aldar-accent); padding: 10px 25px;">Prepared for Senior Leadership</p>
+    </div>
+
+    <header class="banner">
+      <div class="banner-inner">
+        <div class="logo-row">
+          <div class="logo-slot"><img src="aldar-education-logo.png" alt="Aldar Education"></div>
+          <div class="divider"></div>
+          <div class="logo-slot"><img src="kidzink-logo.png" alt="Kidzink"></div>
+          <div class="divider"></div>
+          <div class="logo-slot"><img src="manifest-logo.jpeg" alt="Manifest XR"></div>
+        </div>
+        <div class="header-text">
+          <p>Prepared by Manifest XR</p>
+          <h1>Unified Intelligence Ecosystem</h1>
+        </div>
+      </div>
+    </header>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>01. An Educational Beacon: Tradition Meets Intelligence</h2>
+        <p>This project represents a flagship partnership between <strong>Aldar Education, Kidizink and Manifest XR</strong>.Aligned with Aldar’s vision of shaping future-ready global citizens, the iHub is not merely a room with books; it is a unified ecosystem where physical space meets digital intelligence. By blending Kidzink’s research-driven architectural design with Manifest XR’s "TASI" AI interface, we provide students with a high-tech research sanctuary that fosters critical thinking, digital literacy, and spatial learning..</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>02. Pillar 1: The Physical Brain (Kidzink Design):</h2>
+        <p>
+          <li><strong>Collaborative Pods:</strong> Modular, reconfigurable furniture designed for neurodiverse learning and focused group research.</li>
+          <li><strong>Immersive Zone:</strong>Dedicated areas for AR/VR exploration and holographic data manipulation.</li>
+          <li><strong>Infrastructure:</strong> Turnkey fit-out including specialized power routing, integrated Wi-Fi 7 optimization, and acoustic treatment for "Media Creation" zones.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>03. The "The Digital Brain" Framework (Manifest XR):</h2>
+          <li><strong>TASI AI Librarian:</strong> A conversational AI concierge that integrates directly with Aldar’s school curricula and existing library databases.</li>
+          <li><strong>Mixed Reality Zone:</strong> Dedicated areas for AR/VR exploration and holographic data manipulation.</li>
+          <li><strong>Device Agnostic:</strong> Our AI Software works with any devices including the Meta Quest, Apple Vision Pro and Pico 4 Ultra</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>03. Academic Excellence: American & British Support</h2>
+        <p>Our platform delivers high-impact results across <strong>American (AP) and British (IB/A-Level/IGCSE)</strong> frameworks:</p>
+        <ul class="feature-list">
+          <li><strong>15–20% Improvement:</strong> Documented gains in exam performance for spatial and complex subjects.</li>
+          <li><strong>18% Enrollment Growth:</strong> Creating unique value-differentiation for parents, positioning Aldar Education as a "School of the Future."</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>04. Peer Validation & Proven ROI</h2>
+        
+        <div class="quote-box">
+          "Manifest XR has developed outstanding immersive content... their support in implementing the technology has been invaluable."
+          <span class="quote-author">— Samara Ghafoor, Head of STEAM, MISK Schools</span>
+        </div>
+
+  <div class="media-item vertical-video" style="max-width:320px; margin: 0 auto;">
+    <div class="media-label">Peer Testimonial</div>
+    <video autoplay muted loop playsinline controls>
+      <source src="validation-video.mp4" type="video/mp4">
+    </video>
+    <div class="media-caption">Misk Schools Case Study: Evaluating the impact of spatial learning.</div>
+</div>
+
+        <h3>The Enrollment Engine</h3>
+        <p>Our implementation at <strong>Futuristic Learning Schools (FLS)</strong> serves as a blueprint for success:</p>
+        
+        <div class="roi-box">
+          <div class="roi-card"><span class="roi-stat">60%</span><span class="roi-label">Enrollment Increase</span></div>
+          <div class="roi-card"><span class="roi-stat">3 Months</span><span class="roi-label">Full ROI Breakeven</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" style="border-top: 5px solid var(--aldar-accent);">
+      <div class="card-inner">
+        <h2>05. TASI: The AI Co-Pilot for Educators</h2>
+        <p>At the heart of our ecosystem is <strong>TASI</strong>, a proprietary AI platform engineered to empower teachers. TASI doesn't just manage tech—it transforms the administrative and pedagogical landscape of the school.</p>
+    <ul class="feature-list">
+          <li><strong>Content Generation:</strong> Instant creation of 3D environments and lesson plans tailored to curriculum standards.</li>
+          <li><strong>Live Classroom Support:</strong> Real-time guidance for teachers while navigating immersive sessions.</li>
+          <li><strong>Data-Driven Feedback:</strong> Advanced analytics providing insights into student focus and mastery.</li>
+          <li><strong>Operational Automation:</strong> Handles repetitive paperwork and reporting tasks automatically.</li>
+        </ul>
+
+        <div class="media-item">
+            <div class="media-label">TASI Demo</div>
+            <div class="vimeo-container">
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/1170965050?h=96a1c7736d" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"   allowfullscreen></iframe>
+                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
+                      title="TASI AI Demo"></iframe>
+            </div>
+            <div class="media-caption">TASI Interface: Watch how AI automates lesson planning and 3D asset retrieval.</div>
+        </div>
+        <div style="margin-top: 25px; padding: 20px; background: var(--aldar-primary); color: white; border-radius: var(--radius);">
+          <p style="margin: 0; font-weight: 700; text-transform: uppercase; font-size: 13px; color: var(--aldar-accent);">Projected Efficiency Gain</p>
+          <p style="margin: 5px 0 0; font-size: 15px;">We predict TASI will save Aldar Education approximately <strong>$200,000 (SR 750,000) per year</strong> by reclaiming teacher time and consolidating fragmented software licenses.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>06. The Immersive Lab: AI-Driven Shared Excellence</h2>
+        <div class="media-item widescreen">
+            <div class="media-label">System Showcase</div>
+            <video autoplay muted loop playsinline controls poster="banner.jpg">
+              <source src="immersive-lab.mp4" type="video/mp4">
+            </video>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>07. The Holographic Lab</h2>
+        <div class="media-item widescreen">
+          <video autoplay muted loop playsinline controls><source src="holographic-lab.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>08. The Virtual Reality Lab</h2>
+        <p><strong>Deep-Immersion Virtual Reality (Meta Quest 3S)</strong></p>
+        <p>While zSpace is collaborative, Virtual Reality (VR) provides "presence." Our VR bundle transports students to environments that are physically impossible to visit.</p>
+        <div class="media-item widescreen"><img src="vr-lab.jpg" alt="VR Lab" class="media-img"></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>09. The Strategic Edge: Beyond Hardware</h2>
+        <div class="impact-box">
+          <div class="impact-item"><h4>80%</h4><p>Higher Retention</p></div>
+          <div class="impact-item"><h4>4x</h4><p>Faster Learning Speed</p></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>10. Operational Timeline: Rapid Deployment</h2>
+        <div class="timeline-container">
+            <div class="timeline-step">
+                <span class="step-time">5 Weeks</span>
+                <span class="step-label">Lead Time</span>
+                <p style="font-size: 13px; color: var(--text-light); margin-top: 10px;">From order placement to DDP delivery in UAE.</p>
+            </div>
+            <div class="timeline-step">
+                <span class="step-time">1 Week</span>
+                <span class="step-label">Deployment</span>
+                <p style="font-size: 13px; color: var(--text-light); margin-top: 10px;">Full build, installation, and software calibration.</p>
+            </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>11. Long-Term Roadmap: 3-Year Strategic Growth</h2>
+        <div class="roadmap">
+          <div class="roadmap-item"><span class="roadmap-year">Year 1: Foundation</span> Full hardware integration across the school network with SDAIA-certified teacher training.</div>
+          <div class="roadmap-item"><span class="roadmap-year">Year 2: Shared Metaverse</span> Launch of inter-school collaboration, global virtual debates, and joint research projects.</div>
+          <div class="roadmap-item"><span class="roadmap-year">Year 3: Content Creation</span> Aldar Education becomes a content hub; teachers and students use AI to develop and publish their own proprietary immersive modules.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-inner">
+        <h2>Strategic Investment Summary: Aldar School Lab</h2>
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Module / Component</th>
+                <th>Description</th>
+                <th style="text-align:right">Per School (SAR)</th>
+       
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Immersive Lab</strong></td>
+                <td>360° Shared Environment (Hardware & AI)</td>
+                <td class="money">SR 1,690,000.00</td>
+              </tr>
+              <tr>
+                <td><strong>Holographic Lab</strong></td>
+                <td>10x Workstations for tactile 3D manipulation</td>
+                <td class="money">SR 316,178.20</td>
+              </tr>
+              <tr>
+                <td><strong>Virtual Reality Lab</strong></td>
+                <td>10x Enterprise headsets for individual focus</td>
+                <td class="money">SR 34,450.00</td>
+              </tr>
+              <tr>
+                <td><strong>TASI AI Orchestration Suite</strong></td>
+                <td>One-click lesson generation & AI teacher support</td>
+                <td class="money">SR 29,900.00</td>
+              </tr>
+              <tr>
+                <td><strong>Curriculum Software</strong></td>
+                <td>STEM, Anatomy, & AI Coaching licenses</td>
+                <td class="money">SR 107,737.50</td>
+              </tr>
+              <tr>
+                <td><strong>Custom Integrations and content development</strong></td>
+                <td>Global shipping & DDP Riyadh</td>
+                <td class="money">SR 106,600.00</td>
+              </tr>
+              <tr class="total-row">
+                <td colspan="3" style="padding: 20px; font-size: 16px;">NETWORK GRAND TOTAL</td>
+                <td class="money" style="padding: 20px; font-size: 18px;">SR 2,284,865.7</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top: 30px; background: var(--aldar-light); border: 2px dashed var(--aldar-accent); padding: 25px; border-radius: var(--radius);">
+            <h4 style="color: var(--aldar-primary); margin-top: 0; text-transform: uppercase; letter-spacing: 1px; font-size: 14px;">Strategic Incentive</h4>
+            <p style="margin-bottom: 0; font-size: 14px; color: var(--text-dark);">
+              This proposal includes a specific <strong>SR 115,000.00 reduction</strong> in overhead via the TASI AI layer. Please note that this volume-adjusted pricing is <strong>exclusive to this Ramadan Pricing</strong>.
+            </p>
+        </div>
+      </div>
+    </article>
+
+    <section class="cta-block">
+      <h2 style="color: white; border: none; padding: 0; margin-bottom: 25px; font-weight: 700;">Shape the Legacy</h2>
+      <a href="mailto:alex@manifestrealityxr.com" class="btn">Schedule Demonstration</a>
+    </section>
+
+    <footer style="text-align: center; padding: 60px 0; font-size: 11px; color: var(--text-light); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">
+      &copy; 2026 Manifest XR | Prepared for Aldar Education Group.
+    </footer>
+  </main>
+</body>
+</html>
